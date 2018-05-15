@@ -22,7 +22,7 @@
         echo "connected succesfully";
         
         // Compose the SQL statement
-        $sql = "UPDATE LandingPage SET Archived=1 WHERE myId=".$q;
+        $sql = "UPDATE LandingPage SET Archived=1 WHERE myId='".$q."'";
         $stmt = $db -> prepare ($sql);
         //echo "test 1";
         

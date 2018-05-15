@@ -10,33 +10,7 @@
     </head>
 <body>
     <div class="container">
-        <?php
-            $files = glob("img/*.*");
-            for ($i=0; $i<count($files); $i++){
-            $image = $files[$i];
-            $supported_file = array(
-               'jpg',
-               'jpeg',
-               'png'
-            );
-            $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
-            if (in_array($ext, $supported_file)) {
-            // echo basename($image)."<br />"; // show only image name if you want to show full path then use this code // echo $image."<br />";
-            echo '<img src="'.$image .'" alt="Random image" />'."<br /><br />";
-            } else {
-                continue;
-            }
-         }
-        ?>
      <h2>Final 2018-5-14</h2>
-        <a href="APICall1.php"><button>Add Landing Page</button></a>
-        <a href="rubric.html"><button>Grading Rubric</button></a>
-        <form action="uploadFile.php" method="post" enctype="multipart/form-data">
-            Upload Banner:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload Image" name="submit">
-        </form>
-    
     <?php
         //The new connection setup for Heroku
         ////////////////////////////////////////////////////////////
@@ -55,13 +29,13 @@
 
         $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql =  'SELECT * FROM LandingPage WHERE Archived=0';
+        $sql =  'SELECT * FROM LandingPage WHERE Archived=1';
 
         $stmt = $dbConn -> prepare ($sql);
         $stmt -> execute (  array ( ':id' => '1')  );
         
-        echo '<a href="APICall1.php"><img style="float: right; width: 60px; height: 60px;" src=icons/AddPage.png alt="Random image" /></a>';
-        echo '<a href="ArchivedPages.php"><h2 style=float:right>Archived<h2></a>';
+        echo '<img style="float: right; width: 60px; height: 60px;" src=icons/AddPage.png alt="Random image" />';
+        echo '<a href="index.php"><h2 style=float:right>Dahsboard<h2></a>';
         if ($stmt->rowCount() > 0) {
         $table_str3.='<table id="appointments">';
             $table_str3.='<th>Code</th>';
@@ -76,7 +50,7 @@
                 $table_str3.='<td>'.$row['Code'].'</td>'.'<td>'.$row['Available_From'].'</td>'.'<td>'.$row['Available_To'].'</td>'.'<td>'.$row['Type'].'</td>';
                 // $table_str3.='<td><input type="button" value="delete" onclick="remove('.$row['myId'].')"</td>';
                 $table_str3.='<td><a href="EditRecord.php?q='.$row['myId'].'"><img src="icons/edit.png" alt="HTML tutorial" style="height:100%;"></a></td>';
-                $table_str3.='<td><a href=archive.php?q='.$row['myId'].'"><img src="icons/archive.png" alt="HTML tutorial" style="height:100%;"></a></td>';
+                $table_str3.='<td><a href=Archive.php?q='.$row['myId'].'"><img src="icons/archive.png" alt="HTML tutorial" style="height:100%;"></a></td>';
                 $table_str3.='<td><a href="default.asp"><img src="icons/copyURL.png" alt="HTML tutorial" style="height:100%;"></a></td>';
                 $table_str3.='<td><a href="default.asp"><img src="icons/Preview.png" alt="HTML tutorial" style="height:100%;"></a></td>';
                 $table_str3.='</tr>';
