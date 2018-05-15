@@ -81,6 +81,6 @@
                     })
                     e.preventDefault();
                 });
-  			</script>>
+  			</script>
     </body>
 </html>

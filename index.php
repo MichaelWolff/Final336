@@ -75,8 +75,8 @@
                 $table_str3.='<tr>';
                 $table_str3.='<td>'.$row['Code'].'</td>'.'<td>'.$row['Available_From'].'</td>'.'<td>'.$row['Available_To'].'</td>'.'<td>'.$row['Type'].'</td>';
                 // $table_str3.='<td><input type="button" value="delete" onclick="remove('.$row['myId'].')"</td>';
-                $table_str3.='<td><a href="archive.php?q='.$row['myId'].'"><img src="icons/edit.png" alt="HTML tutorial" style="height:100%;"></a></td>';
-                $table_str3.='<td><a href="default.asp"><img src="icons/archive.png" alt="HTML tutorial" style="height:100%;"></a></td>';
+                $table_str3.='<td><a href="EditRecord.php?q='.$row['myId'].'"><img src="icons/edit.png" alt="HTML tutorial" style="height:100%;"></a></td>';
+                $table_str3.='<td><a href=Archive.php?q='.$row['myId'].'"><img src="icons/archive.png" alt="HTML tutorial" style="height:100%;"></a></td>';
                 $table_str3.='<td><a href="default.asp"><img src="icons/copyURL.png" alt="HTML tutorial" style="height:100%;"></a></td>';
                 $table_str3.='<td><a href="default.asp"><img src="icons/Preview.png" alt="HTML tutorial" style="height:100%;"></a></td>';
                 $table_str3.='</tr>';

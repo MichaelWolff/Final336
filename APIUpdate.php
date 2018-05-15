@@ -8,35 +8,10 @@
       case "DELETE":
         break;
       case "GET":
-        // $pin=json_decode($_POST['data'], true).pin;
-        
-        // $connUrl = getenv('JAWSDB_MARIA_URL');
-        // $hasConnUrl = !empty($connUrl);
-        // $connParts = null;
-        
-        // if ($hasConnUrl) {
-        //     $connParts = parse_url($connUrl);
-        // }
-        
-        // $host = $hasConnUrl ? $connParts['host'] : getenv('IP');
-        // $dbname = $hasConnUrl ? ltrim($connParts['path'],'/') : 'Final2';
-        // $username = $hasConnUrl ? $connParts['user'] : getenv('C9_USER');
-        // $password = $hasConnUrl ? $connParts['pass'] : '';
-        // $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-        // $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // echo "connected succesfully";
-        
-        // // Compose the SQL statement
-        // $sql = "SELECT * FROM Tester";
-        // $stmt = $db -> prepare ($sql);
-        // echo 'test 1';
-        // $stmt -> execute ( array ( ':id' => '1')  );
-        // echo 'test 2';
-        // echo json_encode($stmt);
         break;
       case 'POST':
         //$StartTime=$_POST['StartTime'];
-        $myId = rand(0,1000);
+        $myId = $_POST['myId'];
         $Code = $_POST['Code'];
         $Available_From = $_POST['Available_From'];
         $Available_To = $_POST['Available_To'];
@@ -55,7 +30,7 @@
         $Image = 'tests';
         
         
-        echo "MyID: ".$myID;
+        echo "MyID: ".$myId;
         echo "MyCode: ".$Code;
         echo "Available_From: ".$Available_From;
         echo "Available_To: ".$Available_To;
@@ -79,25 +54,12 @@
         echo "connected succesfully";
         
         // Compose the SQL statement
-        $sql = "INSERT INTO LandingPage(myId, Code, Available_From, Available_To, Type, Archived, URL, Image, Slogan, Title, Action, Details ) VALUES (:myId, :Code, :Available_From, :Available_To, :Type, :Archived, :URL, :Image, :Slogan, :Title, :Action, :Details)";
+        $sql = "UPDATE LandingPage SET Code='".$Code."' WHERE myId=".$myId;
         $stmt = $db -> prepare ($sql);
         echo "test 1";
         
-         $stmt -> execute (  array ( ':myId' => $myId, ':Code' => $Code, ':Available_From' => $Available_From, ':Available_To' => $Available_To, ':Type' => $Type, ':Archived' => $Archived, ':URL' => $URL, ':Image' => $Image, ':Slogan' => $Slogan , ':Title' => $Title , ':Action' => $Action,':Details' => $Details  ) );
-         //$stmt -> execute (  array ( ':myId' => '151', ':Code' => 'tester', ':Available_From' => 'tester', ':Available_To' => 'tester', ':Type' => 'tester', ':Archived' => 'tester', ':URL' => 'tester', ':Image' => 'tester')  );
-        echo "test 2";
-        
-        $results = array("status" => 0, "message" => "all good");
-        echo "test 3";
-        
-        header("Access-Control-Allow-Origin: *");
-        echo "test 4";   
-        
-        header("Content-Type: application/json");
-        echo "test 5";
-        
-        echo json_encode($results);
-        header('Location: index.php'); 
+         $stmt -> execute ( );
+         header('Location: index.php'); 
         break;
     }
 ?>
